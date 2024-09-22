@@ -8,11 +8,12 @@ import {FooterComponent} from "./layout/footer/footer.component";
 import {ToastModule} from "primeng/toast";
 import {ToastService} from "./layout/toast.service";
 import {MessageService} from "primeng/api";
+import { RoomItemComponent } from './shared/room-item/room-item.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Button, FontAwesomeModule, NavbarComponent, FooterComponent, ToastModule],
+  imports: [RouterOutlet, Button, FontAwesomeModule, NavbarComponent, FooterComponent, ToastModule, RoomItemComponent],
   providers: [MessageService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
   isListingView= true;
   toastService = inject(ToastService);
   messageService = inject(MessageService);
+  title = 'booking-fe';
 
   ngOnInit() {
     this.initFontAwesome();

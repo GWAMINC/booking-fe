@@ -1,0 +1,22 @@
+<div class="room-item-container">
+    <div *ngFor="let item of displayItems" class="room-item">
+        <img [src]="item.image" [alt]="item.title" class="room-image">
+        <div class="room-details">
+            <div class="room-header">
+                <h3 class="room-title">{{ item.title }}</h3>
+                <span class="room-price">{{ item.price | currency:'USD' }} / night</span>
+            </div>
+            <p class="room-location">{{ item.location }}</p>
+            <p class="room-description">{{ item.description }}</p>
+            <p>{{ item.date | date:'MMM d-d' }}</p>
+        </div>
+    </div>
+</div>
+<div class="show-more-container">
+    <button *ngIf="displayItems.length < items.length" 
+            (click)="loadMoreItems()" 
+            class="show-more-button">
+        Show More
+    </button>
+</div>
+

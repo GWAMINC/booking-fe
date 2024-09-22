@@ -18,7 +18,7 @@ export class CategoryComponent implements OnInit{
   categories: Category[] | undefined;
 
   currentActivateCategory = this.categoryService.getCategoryByDefault();
-
+  
   ngOnInit() {
     this.fetchCategories();
   }
