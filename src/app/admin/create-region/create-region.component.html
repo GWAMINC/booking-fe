@@ -1,0 +1,11 @@
+<div class="create-region-form">
+  <h3>Create Region</h3>
+  <form (ngSubmit)="onSubmit()" #regionForm="ngForm">
+    <div class="form-group">
+      <label for="name">Region Name:</label>
+      <input id="name" [(ngModel)]="region.name" name="name" required>
+    </div>
+
+    <button type="submit" [disabled]="regionForm.invalid" class="btn btn-primary">Create Region</button>
+  </form>
+</div>
