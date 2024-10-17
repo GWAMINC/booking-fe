@@ -1,0 +1,45 @@
+/* Định dạng cho bảng */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Định dạng cho các ô trong bảng */
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Thêm màu nền cho các hàng trong bảng */
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Thêm hiệu ứng hover cho các hàng trong bảng */
+table tr:hover {
+  background-color: #ddd;
+}
+
+/* Định dạng cho nút */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  margin: 0 10px; /* Thêm khoảng cách giữa các nút */
+}
+
+button:hover {
+  background-color: #45a049;
+}
+.action-column {
+  width: 200px; /* Điều chỉnh chiều rộng của cột tùy theo nhu cầu của bạn */
+  text-align: center; /* Căn giữa nội dung trong cột */
+  display: flex; /* Sử dụng flexbox */
+  justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+}
