@@ -1,0 +1,21 @@
+<h1>Danh sách Attribute Category</h1>
+<button type="button" (click)="addCategory()">Create Category</button>
+<table>
+  <thead>
+  <tr>
+    <th>Tên</th>
+    <th class ="action-column">Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let category of categories; let i = index">
+    <td><input [(ngModel)]="category.name" [disabled]="!category.isEditing"></td>
+    <td class = "action-column">
+      <button type="button" (click)="createCategory(i)" *ngIf="category.isEditing && !category.isUpdating">Create</button>
+      <button type="button" (click)="saveCategory(i)" *ngIf="category.isUpdating">Save</button>
+      <button type="button" (click)="updateCategory(i)" *ngIf="!category.isEditing">Edit</button>
+      <button type="button" (click)="deleteCategory(i)" *ngIf="!category.isEditing">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,6 +1,8 @@
 <div class="sidebar" [class.sidebar-open]="isSidebarOpen">
   <ul>
     <li><a routerLink="/admin/dashboard">Dashboard</a></li>
+    <li><a routerLink="/admin/attribute">Attribute</a> </li>
+    <li><a routerLink="/admin/attribute-category">Attribute Category</a> </li>
     <li>
       <a (click)="toggleRegionDropdown()">Region ▼</a>
       <ul [class.dropdown-open]="isRegionDropdownOpen">

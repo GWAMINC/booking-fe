@@ -1,0 +1,29 @@
+<h1>Danh sách Attribute</h1>
+<button type="button" (click)="addAttribute()">Create Attribute</button>
+<table>
+  <thead>
+  <tr>
+    <th>Tên</th>
+    <th>Mô tả</th>
+    <th>Category</th>
+    <th>Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let attribute of attributes; let i = index">
+    <td><input [(ngModel)]="attribute.name" [disabled]="!attribute.isEditing"></td>
+    <td><input [(ngModel)]="attribute.description" [disabled]="!attribute.isEditing"></td>
+    <td>
+      <select [(ngModel)]="attribute.attributeCategory.id" [disabled]="!attribute.isEditing">
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+      </select>
+    </td>
+    <td>
+      <button type="button" (click)="createAttribute(i)" *ngIf="attribute.isEditing && !attribute.isUpdating">Create</button>
+      <button type="button" (click)="updateAttribute(i)" *ngIf="!attribute.isEditing">Edit</button>
+      <button type="button" (click)="saveAttribute(i)" *ngIf="attribute.isUpdating">Save</button>
+      <button type="button" (click)="deleteAttribute(i)" *ngIf="!attribute.isEditing">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
