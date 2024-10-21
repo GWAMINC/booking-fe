@@ -7,6 +7,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { CreateRegionComponent } from './admin/admin-sidebar/region/create-region/create-region.component';
 import { AttributeDashboardComponent } from './admin/admin-sidebar/attribute-dashboard/attribute-dashboard.component';
 import { AttributeCategoryDashboardComponent } from './admin/admin-sidebar/attribute-category-dashboard/attribute-category-dashboard.component';
+import { CategoryDashboardComponent } from './admin/admin-sidebar/category-dashboard/category-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,7 @@ export const routes: Routes = [
       { path: 'create-region', component: CreateRegionComponent },
       { path: 'attribute', component: AttributeDashboardComponent },
       { path: 'attribute-category', component: AttributeCategoryDashboardComponent },
+      { path: 'category', component: CategoryDashboardComponent }
       // Các route khác của admin
     ]
   },
