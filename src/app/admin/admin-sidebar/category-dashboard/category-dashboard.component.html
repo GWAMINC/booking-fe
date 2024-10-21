@@ -1,0 +1,43 @@
+<div class="dashboard">
+  <div class="dashboard__header">
+    <div><h2>Categories list</h2></div>
+    
+    <form #categoryForm="ngForm" (ngSubmit)="addCategory()">
+      <div class="dashboard__add">
+        <button class="btn">
+          Add category
+        </button>
+  
+        <input
+          type="text"
+          required
+          [(ngModel)]="category.categoryName"
+          name="addCategoryInput"
+          placeholder="Enter category name"
+        >
+      </div>
+    </form>
+  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>categoryName</th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      @for (category of categories; track category.id) {
+        <tr
+          app-category-row
+          [category]="category"
+          (deleteCategoryEvent)="deleteCategory($event)"
+          (updateCategoryEvent)="updateCategory($event)"
+        ></tr>
+      }
+    </tbody>
+  </table>
+</div>
+

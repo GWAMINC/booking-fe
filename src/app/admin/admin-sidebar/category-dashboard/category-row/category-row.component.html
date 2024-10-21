@@ -1,0 +1,27 @@
+<td>{{ category.id }}</td>
+<td>
+  @if (!isEditing) {
+    {{ category.categoryName }}
+  } @else {
+    <input
+      type="text"
+      name="editCategoryInput"
+      [(ngModel)]="category.categoryName"
+    >
+  }
+</td>
+<td>
+  <div class="dashboard__control">
+    @if (!isEditing) {
+      <button (click)="deleteCategory()" class="btn btn--danger">
+        Delete
+      </button>
+      <button (click)="editCategory()" class="btn">Edit</button>
+    } @else {
+      <button (click)="cancelEditCategory()" class="btn btn--danger">
+        Cancel
+      </button>
+      <button (click)="updateCategory()" class="btn">Save</button>
+    }
+  </div>
+</td>
