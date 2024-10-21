@@ -1,12 +1,14 @@
+import { CountryComponent } from './admin/admin-sidebar/country/country.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { HomeComponent } from './home/home.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { CreateRegionComponent } from './admin/admin-sidebar/region/create-region/create-region.component';
+
 import { AttributeDashboardComponent } from './admin/admin-sidebar/attribute-dashboard/attribute-dashboard.component';
 import { AttributeCategoryDashboardComponent } from './admin/admin-sidebar/attribute-category-dashboard/attribute-category-dashboard.component';
+import { RegionComponent } from './admin/admin-sidebar/region/region.component';
 
 export const routes: Routes = [
   {
@@ -22,9 +24,10 @@ export const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
-      { path: 'create-region', component: CreateRegionComponent },
+      { path: 'region', component: RegionComponent },
       { path: 'attribute', component: AttributeDashboardComponent },
       { path: 'attribute-category', component: AttributeCategoryDashboardComponent },
+      {path:'country',component:CountryComponent}
       // Các route khác của admin
     ]
   },
