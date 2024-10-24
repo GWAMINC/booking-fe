@@ -69,7 +69,8 @@ export class RegionComponent implements OnInit, OnDestroy {
       return;
     }
     this.subscription.add(
-      this.regionService.updateRegion(this.regions[index].id, this.regions[index]).subscribe({
+      this.regionService.updateRegion(this.regions[index].id,
+        this.regions[index]).subscribe({
         next: (response) => {
           this.regions[index].isEditing = false;
           this.regions[index].isUpdating = false;
