@@ -1,0 +1,49 @@
+<div class="dashboard">
+  <div class="dashboard__header">
+    <div><h2><b>Property Types</b></h2></div>
+
+    <form type="ngForm" (ngSubmit)="addPropertyType()">
+      <div class="dashboard__add">
+        <button class="btn">
+          Add type
+        </button>
+
+        <input
+          type="text"
+          required
+          [(ngModel)]="propertyType.typeName"
+          name="addPropertyTypeInput"
+          placeholder="Enter type name"
+        >
+      </div>
+    </form>
+
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Type name</th>
+
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let propertyType of propertyTypes">
+      <td>
+        <h3><input [(ngModel)]="propertyType.typeName" [disabled]="!propertyType.isEditing"></h3>
+      </td>
+
+      <td class="action-column">
+        <button class="btn" (click)="updatePropertyType(propertyType.id)" *ngIf="!propertyType.isEditing">Edit</button>
+        <button class="btn" (click)="savePropertyType(propertyType.id)" *ngIf="propertyType.isEditing">Save</button>
+        <button class="delete-button" (click)="cancelupdPropertyType(propertyType.id)" *ngIf="propertyType.isEditing" >Cancel</button>
+        <button class="delete-button" (click)="deletePropertyType(propertyType.id)" *ngIf="!propertyType.isEditing">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
