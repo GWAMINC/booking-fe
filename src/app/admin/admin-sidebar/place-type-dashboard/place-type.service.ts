@@ -15,7 +15,7 @@ export class PlaceTypeService {
     return this.http.get<PlaceTypeDto[]>(`${this.apiUrl}/getAll`);
   }
 
-  addPlaceType(placeType: PlaceTypeDto): Observable<PlaceTypeDto> {
+  createPlaceType(placeType: PlaceTypeDto): Observable<PlaceTypeDto> {
     return this.http.post<PlaceTypeDto>(`${this.apiUrl}/create`, placeType);
   }
 

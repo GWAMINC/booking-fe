@@ -33,7 +33,7 @@ export class PlaceTypeDashboardComponent {
       alert('Please enter type name!');
     else {
       this.placeTypeService
-        .addPlaceType(this.placeType)
+        .createPlaceType(this.placeType)
         .subscribe((newPlaceType) => {
           this.placeTypes = [...this.placeTypes, newPlaceType];
         });
@@ -43,33 +43,23 @@ export class PlaceTypeDashboardComponent {
   }
 
   deletePlaceType(id: number) {
-    let confirmDelete: boolean = confirm('Confirm delete place type with?');
+    this.placeTypeService
+      .deletePlaceType(id)
+      .subscribe((res) => console.log(res));
 
-    if (confirmDelete) {
-      this.placeTypeService.deletePlaceType(id).subscribe((res) => {
-        console.log(res);
-      });
-
-      this.placeTypes = this.placeTypes.filter(
-        (placeType) => placeType.id !== id
-      );
-    }
-
-    this.placeTypeService.deletePlaceType(id);
+    this.placeTypes = this.placeTypes.filter(
+      (placeType) => placeType.id !== id
+    );
   }
 
   updatePlaceType(newPlaceType: PlaceTypeDto) {
-    let confirmUpdate: boolean = confirm('Confirm updating place type?');
+    this.placeTypeService
+      .updatePlaceType(newPlaceType)
+      .subscribe((res) => console.log(res));
 
-    if (confirmUpdate) {
-      this.placeTypeService
-        .updatePlaceType(newPlaceType)
-        .subscribe((res) => console.log(res));
-
-      this.placeTypes = this.placeTypes.map((placeType) => {
-        if (placeType.id === newPlaceType.id) return newPlaceType;
-        return placeType;
-      });
-    }
+    this.placeTypes = this.placeTypes.map((placeType) => {
+      if (placeType.id === newPlaceType.id) return newPlaceType;
+      return placeType;
+    });
   }
 }

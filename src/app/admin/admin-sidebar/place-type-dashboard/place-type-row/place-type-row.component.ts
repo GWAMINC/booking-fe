@@ -22,7 +22,11 @@ export class PlaceTypeRowComponent {
   oldTypeName = '';
 
   deletePlaceType() {
-    this.placeTypeDeleted.emit(this.placeType.id);
+    let confirmDelete: boolean = confirm(
+      'Are you sure you want to delete this place type?'
+    );
+
+    if (confirmDelete) this.placeTypeDeleted.emit(this.placeType.id);
   }
 
   editPlaceType() {
@@ -36,7 +40,13 @@ export class PlaceTypeRowComponent {
   }
 
   updatePlaceType() {
-    this.placeTypeUpdated.emit(this.placeType);
-    this.isEditing = false;
+    let confirmUpdate: boolean = confirm(
+      'Are you sure you want to update this place type?'
+    );
+
+    if (confirmUpdate) {
+      this.placeTypeUpdated.emit(this.placeType);
+      this.isEditing = false;
+    }
   }
 }
