@@ -1,0 +1,27 @@
+<td>{{ placeType.id }}</td>
+<td>
+  @if (!isEditing) {
+    {{ placeType.typeName }}
+  } @else {
+    <input
+      type="text"
+      name="editCategoryInput"
+      [(ngModel)]="placeType.typeName"
+    />
+  }
+</td>
+<td>
+  <div class="dashboard__control">
+    @if (!isEditing) {
+      <button (click)="deletePlaceType()" class="btn btn--danger">
+        Delete
+      </button>
+      <button (click)="editPlaceType()" class="btn">Edit</button>
+    } @else {
+      <button (click)="cancelEditPlaceType()" class="btn btn--danger">
+        Cancel
+      </button>
+      <button (click)="updatePlaceType()" class="btn">Save</button>
+    }
+  </div>
+</td>

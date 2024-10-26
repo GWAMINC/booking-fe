@@ -1,21 +1,17 @@
 <div class="sidebar" [class.sidebar-open]="isSidebarOpen">
   <ul>
     <li><a routerLink="/admin/dashboard">Dashboard</a></li>
-    <li><a routerLink="/admin/attribute">Attribute</a> </li>
-    <li><a routerLink="/admin/attribute-category">Attribute Category</a> </li>
+    <li><a routerLink="/admin/attribute">Attribute</a></li>
+    <li><a routerLink="/admin/attribute-category">Attribute Category</a></li>
     <li>
       <a (click)="toggleRegionDropdown()">Region ▼</a>
       <ul [class.dropdown-open]="isRegionDropdownOpen">
         <li><a routerLink="/admin/region">Create Region</a></li>
       </ul>
     </li>
-
-    <li><a routerLink="/admin/country">Country</a> </li>
-
-
+    <li><a routerLink="/admin/country">Country</a></li>
     <li><a routerLink="/admin/category">Category</a></li>
-
+    <li><a routerLink="/admin/place-type">PlaceType</a></li>
     <li><a routerLink="/admin/property-type">Property Type</a></li>
-
   </ul>
 </div>

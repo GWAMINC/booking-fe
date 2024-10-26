@@ -1,0 +1,35 @@
+<div class="dashboard">
+  <div class="dashboard__header">
+    <div><h2>PlaceTypes list</h2></div>
+
+    <div class="dashboard__add">
+      <button (click)="addPlaceType()" class="btn">Add placeType</button>
+      <input
+        [(ngModel)]="placeType.typeName"
+        type="text"
+        required
+        placeholder="Enter type name"
+      />
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>typeName</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (placeType of placeTypes; track placeType.id) {
+        <tr
+          app-place-type-row
+          [placeType]="placeType"
+          (placeTypeDeleted)="deletePlaceType($event)"
+          (placeTypeUpdated)="updatePlaceType($event)"
+        ></tr>
+      }
+    </tbody>
+  </table>
+</div>

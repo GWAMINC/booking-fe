@@ -1,0 +1,75 @@
+@import "../../../../assets/styles/variables";
+
+table {
+  table-layout: auto;
+  border-collapse: collapse;
+  color: $text-color;
+  width: 100%;
+  table-layout: auto;
+}
+
+thead > tr,
+tr:not(:last-child) {
+  border-bottom: 1px solid $border-color;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.25em 0.5em;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 1em;
+  width: 100%;
+}
+
+.dashboard {
+  width: 30em;
+}
+
+.btn {
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: $secondary-color;
+  color: white;
+  border-radius: 0.25em;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+.btn--danger {
+  background-color: #d9534f;
+}
+
+.dashboard__header {
+  margin-bottom: 2em;
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+}
+
+.dashboard__add {
+  display: flex;
+
+  input {
+    margin-left: 1em;
+    flex: 1;
+  }
+}
+
+.dashboard__control {
+  display: flex;
+  flex-direction: row-reverse;
+
+  button:not(:last-child) {
+    margin-left: 0.5em;
+  }
+}
