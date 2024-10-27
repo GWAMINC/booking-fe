@@ -1,14 +1,13 @@
-import { Component, NgModule, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryDto } from '../../../model/category.model';
 import { CategoryService } from './category.service';
-import { AsyncPipe } from '@angular/common';
 import { CategoryRowComponent } from './category-row/category-row.component';
 
 @Component({
   selector: 'app-category-dashboard',
   standalone: true,
-  imports: [AsyncPipe, FormsModule, CategoryRowComponent],
+  imports: [FormsModule, CategoryRowComponent],
   templateUrl: './category-dashboard.component.html',
   styleUrl: './category-dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -38,36 +37,29 @@ export class CategoryDashboardComponent {
         .subscribe((newCategory) => {
           this.categories = [...this.categories, newCategory];
         });
-
-      alert('Create category successfully!');
     }
 
     this.category.categoryName = '';
   }
 
   deleteCategory(id: number) {
-    this.categoryService.deleteCategory(id).subscribe((res) => {
-      let confirmDelete: boolean = confirm(
-        `Confirm delete category with id ${id}?`
-      );
+    this.categoryService
+      .deleteCategory(id)
+      .subscribe((res) => console.log(res));
 
-      if (confirmDelete) {
-        this.categories = this.categories.filter(
-          (category) => category.id !== id
-        );
-        alert('Delete category successfully!');
-      }
-    });
+    this.categories = this.categories.filter(
+      (category) => category.id !== id
+    );
   }
 
-  updateCategory(categoryDto: CategoryDto) {
+  updateCategory(newCategory: CategoryDto) {
     this.categoryService
-      .updateCategory(categoryDto)
-      .subscribe((newCategory) => {
-        this.categories = this.categories.map((category) => {
-          if (category.id === newCategory.id) return newCategory;
-          return category;
-        });
-      });
+      .updateCategory(newCategory)
+      .subscribe((res) => console.log(res));
+
+    this.categories = this.categories.map((category) => {
+      if (category.id === newCategory.id) return newCategory;
+      return category;
+    });
   }
 }

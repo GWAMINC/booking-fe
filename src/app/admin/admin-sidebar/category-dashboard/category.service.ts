@@ -18,11 +18,11 @@ export class CategoryService {
   }
 
   deleteCategory(id: number): Observable<any> {
-    return this.http.delete<number>(`${this.apiUrl}/deleteById/${id}`);
+    return this.http.delete(`${this.apiUrl}/deleteById/${id}`);
   }
 
-  updateCategory(categoryDto: CategoryDto): Observable<CategoryDto> {
-    return this.http.post<CategoryDto>(
+  updateCategory(categoryDto: CategoryDto): Observable<any> {
+    return this.http.post(
       `${this.apiUrl}/updateById/${categoryDto.id}`,
       categoryDto
     );
