@@ -13,7 +13,7 @@
       <td class="action-column">
         <button type="button" (click)="createRegion(i)" *ngIf="region.isEditing && !region.isUpdating">Tạo</button>
         <button type="button" (click)="saveRegion(i)" *ngIf="region.isUpdating">Lưu</button>
-        <button type="button" (click)="updateRegion(i)" *ngIf="!region.isEditing">Chỉnh Sửa</button>
+        <button type="button" (click)="updateRegion(i)" *ngIf="!region.isEditing">Edit</button>
         <button type="button" (click)="deleteRegion(i)" *ngIf="!region.isEditing">Xóa</button>
       </td>
     </tr>

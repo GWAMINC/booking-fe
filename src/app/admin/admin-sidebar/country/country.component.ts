@@ -1,4 +1,3 @@
-// src/app/country/country.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CountryService } from './country.service';
@@ -71,6 +70,7 @@ export class CountryComponent implements OnInit, OnDestroy {
       this.countryService.createCountry(this.countries[index]).subscribe({
         next: (response) => {
           this.countries[index] = response;
+          console.log(response)
           this.countries[index].isEditing = false;
         },
         error: (error) => {

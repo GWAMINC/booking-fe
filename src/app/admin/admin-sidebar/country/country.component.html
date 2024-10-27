@@ -19,7 +19,7 @@
       <td class="action-column">
         <button type="button" (click)="createCountry(i)" *ngIf="country.isEditing && !country.isUpdating">Tạo</button>
         <button type="button" (click)="saveCountry(i)" *ngIf="country.isUpdating">Lưu</button>
-        <button type="button" (click)="updateCountry(i)" *ngIf="!country.isEditing">Chỉnh Sửa</button>
+        <button type="button" (click)="updateCountry(i)" *ngIf="!country.isEditing">Edit</button>
         <button type="button" (click)="deleteCountry(i)" *ngIf="!country.isEditing">Xóa</button>
       </td>
     </tr>
