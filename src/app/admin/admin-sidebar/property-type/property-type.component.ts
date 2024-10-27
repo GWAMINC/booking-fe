@@ -5,6 +5,7 @@ import {PropertyTypeService} from "./property-type.service";
 import {AsyncPipe} from "@angular/common";
 import {Subscription} from "rxjs";
 import {NgFor, NgIf} from "@angular/common";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-property-type',
@@ -31,7 +32,6 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
     this.propertyTypeService
       .getPropertyTypes()
       .subscribe((propertyTypes)=>(this.propertyTypes = propertyTypes));
-
   }
 
   getPropertyTypes() {
@@ -51,20 +51,25 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
     );
   }
 
-  addPropertyType(): void {
-    if (this.propertyType.typeName.trim().length===0){
-      alert("Please enter a type name");
-    }
-    else {
+
+  addPropertyType() {
+    if (this.propertyType.typeName.trim().length === 0) {
+      alert('Please enter category name');
+    } else {
       this.propertyTypeService
         .createPropertyTypes(this.propertyType)
         .subscribe((newPropertyType) => {
-          this.propertyTypes = newPropertyType;
+          this.propertyTypes = [...this.propertyTypes, newPropertyType];
+
         });
-      alert("Create property type successfully!");
+      console.log(this.propertyType.id,this.propertyType.typeName)
+
+      alert('Create category successfully!');
     }
-    this.propertyType.typeName='';
+
+    this.propertyType.typeName = '';
   }
+
 
   updatePropertyType(id: number) {
     const propertyType = this.propertyTypes.find((pt) => pt.id === id);
@@ -92,7 +97,7 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
       }
       this.subscription.add(
         this.propertyTypeService.updatePropertyTypes(propertyType.id, propertyType).subscribe({
-          next: (response) => {
+          next: () => {
             propertyType.isEditing = false;
             propertyType.isUpdating = false;
           },
@@ -105,14 +110,15 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
   }
 
   deletePropertyType(id: number): void {
-    this.propertyTypeService.deletePropertyTypes(id).subscribe((res)=>{
+    this.propertyTypeService.deletePropertyTypes(id).subscribe(()=>{
       let comfirmDelete: boolean = confirm("Are you sure you want to delete?");
 
       if (comfirmDelete) {
         this.propertyTypes=this.propertyTypes.filter(
-          (propertyType)=> propertyType.id === id
+          (propertyType)=> propertyType.id !== id
         );
         alert("Delete property type successfully!");
+
       }
     })
   }

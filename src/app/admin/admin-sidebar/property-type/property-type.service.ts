@@ -13,8 +13,8 @@ export class PropertyTypeService {
     return this.http.get<PropertyTypeDto[]>(`${this.apiUrl}/getAll`);
   }
 
-  createPropertyTypes(propertyType: any): Observable<PropertyTypeDto[]> {
-    return this.http.post<PropertyTypeDto[]>(`${this.apiUrl}/create`,propertyType);
+  createPropertyTypes(propertyType: PropertyTypeDto): Observable<PropertyTypeDto> {
+    return this.http.post<PropertyTypeDto>(`${this.apiUrl}/create`,propertyType);
   }
 
   updatePropertyTypes(id: number, propertyType: PropertyTypeDto): Observable<PropertyTypeDto> {
