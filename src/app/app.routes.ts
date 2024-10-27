@@ -11,6 +11,7 @@ import { RegionComponent } from './admin/admin-sidebar/region/region.component';
 import { CategoryDashboardComponent } from './admin/admin-sidebar/category-dashboard/category-dashboard.component';
 import { PlaceTypeDashboardComponent } from './admin/admin-sidebar/place-type-dashboard/place-type-dashboard.component';
 import { PropertyTypeComponent } from "./admin/admin-sidebar/property-type/property-type.component";
+import {PropertyComponent} from "./admin/admin-sidebar/property/property.component";
 
 export const routes: Routes = [
   {
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: 'category', component: CategoryDashboardComponent },
       { path: 'place-type', component: PlaceTypeDashboardComponent },
       { path: 'property-type', component: PropertyTypeComponent },
+      {path: 'property', component: PropertyComponent},
       // Các route khác của admin
     ],
   },
