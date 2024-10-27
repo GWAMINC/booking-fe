@@ -1,0 +1,55 @@
+<h1>Properties</h1>
+<button type="button" (click)="addProperty()" >Create Property</button>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Location</th>
+    <th>Place</th>
+    <th>nightlyPrice</th>
+    <th>numBedrooms</th>
+    <th>numBeds</th>
+    <th>numGuests</th>
+    <th>isGuestFavourite</th>
+    <th>Description</th>
+    <th>addressLine1</th>
+    <th>addressLine2</th>
+    <th>Host</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let property of properties; let i = index">
+    <td><input [(ngModel)]="property.propertyName" [disabled]="!property.isEditing"></td>
+    <td>
+      <select [(ngModel)]="property.propertyType.id" [disabled]="!property.isEditing">
+        <option *ngFor="let propertyType of propertyTypes" [value]="propertyType.id">{{ propertyType.typeName }}</option>
+      </select>
+    </td>
+    <td><input [(ngModel)]="property.location.name" [disabled]="!property.isEditing"></td>
+    <td>
+      <select [(ngModel)]="property.placeType.id" [disabled]="!property.isEditing">
+        <option *ngFor="let placeType of placeTypes" [value]="placeType.id">{{ placeType.typeName }}</option>
+      </select>
+    </td>
+    <td><input [(ngModel)]="property.nightlyPrice" type="number" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.numBedrooms" type="number" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.numBeds" type="number" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.numGuests" type="number" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.isGuestFavourite" type="checkbox" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.description" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.addressLine1" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.addressLine2" [disabled]="!property.isEditing"></td>
+    <td><input [(ngModel)]="property.host" [disabled]="!property.isEditing"></td>
+    <td>
+      <button type="button" (click)="createProperty(i)" *ngIf="property.isEditing && !property.isUpdating">Create</button>
+      <button type="button" (click)="updateProperty(i)" *ngIf="!property.isEditing">Edit</button>
+      <button type="button" (click)="saveProperty(i)" *ngIf="property.isUpdating">Save</button>
+      <button type="button" (click)="deleteProperty(i)" *ngIf="!property.isEditing">Delete</button>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
