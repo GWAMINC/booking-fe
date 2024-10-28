@@ -12,6 +12,7 @@ import { CategoryDashboardComponent } from './admin/admin-sidebar/category-dashb
 import { PlaceTypeDashboardComponent } from './admin/admin-sidebar/place-type-dashboard/place-type-dashboard.component';
 import { PropertyTypeComponent } from "./admin/admin-sidebar/property-type/property-type.component";
 import {PropertyComponent} from "./admin/admin-sidebar/property/property.component";
+import { ReviewComponent } from './admin/admin-sidebar/review/review.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
       { path: 'place-type', component: PlaceTypeDashboardComponent },
       { path: 'property-type', component: PropertyTypeComponent },
       {path: 'property', component: PropertyComponent},
+      {path: 'review', component: ReviewComponent}
       // Các route khác của admin
     ],
   },
