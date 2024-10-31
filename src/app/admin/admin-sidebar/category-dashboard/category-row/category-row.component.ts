@@ -33,7 +33,7 @@ export class CategoryRowComponent {
     this.isEditing = true;
     this.oldCategoryName = this.category.categoryName;
   }
-  
+
   cancelEditCategory() {
     this.category.categoryName = this.oldCategoryName;
     this.isEditing = false;
