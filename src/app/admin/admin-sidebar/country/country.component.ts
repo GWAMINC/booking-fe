@@ -70,11 +70,12 @@ export class CountryComponent implements OnInit, OnDestroy {
       this.countryService.createCountry(this.countries[index]).subscribe({
         next: (response) => {
           this.countries[index] = response;
-          console.log(response)
           this.countries[index].isEditing = false;
+          alert('Tạo quốc gia thành công');
         },
         error: (error) => {
           console.error('Error creating country', error);
+          alert('Error creating country');
         }
       })
     );
@@ -95,9 +96,11 @@ export class CountryComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.countries[index].isEditing = false;
           this.countries[index].isUpdating = false;
+          alert("Sửa thành công!");
         },
         error: (error) => {
           console.error('Error updating country', error);
+          alert(error.message)
         }
       })
     );
@@ -108,9 +111,11 @@ export class CountryComponent implements OnInit, OnDestroy {
       this.countryService.deleteCountry(this.countries[index].id).subscribe({
         next: () => {
           this.countries.splice(index, 1);
+          alert('Xóa quốc gia thành công');
         },
         error: (error) => {
           console.error('Error deleting country', error);
+          alert(error.message)
         }
       })
     );

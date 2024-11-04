@@ -1,0 +1,33 @@
+<p>Location</p><button (click)="addLocation()">Add Location</button>
+<table>
+    <thead>
+        <tr>
+            <th>Name location</th>
+            <th>Region</th>
+            <th>Country</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let location of locations;let i=index">
+            <td><input [(ngModel)]="location.name" [disabled]="!location.isEditing"></td>
+            <td>
+                <select [(ngModel)]="location.country.region.id" [disabled]="!location.isEditing" (change)="onRegionChange(location.country.region.id,i)">
+                    <option *ngFor="let region of regions" [value]="region.id">{{region.name}}</option>
+                </select>
+            </td>
+            <td>
+                <select [(ngModel)]="location.country.id" [disabled]="!location.isEditing">
+                    <option *ngFor="let country of countries[i]" [value]="country.id"> {{country.name}}</option>
+                </select>
+            </td>
+            <td>
+                <button type="button" (click)="createLocation(i)"
+                    *ngIf="location.isEditing && !location.isUpdating">Tạo</button>
+                <button type="button" (click)="saveLocation(i)" *ngIf="location.isUpdating">Lưu</button>
+                <button type="button" (click)="updateLocation(i)" *ngIf="!location.isEditing">Edit</button>
+                <button type="button" (click)="deleteLocation(i)" *ngIf="!location.isEditing">Xóa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

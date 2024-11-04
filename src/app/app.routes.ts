@@ -13,6 +13,7 @@ import { PlaceTypeDashboardComponent } from './admin/admin-sidebar/place-type-da
 import { PropertyTypeComponent } from "./admin/admin-sidebar/property-type/property-type.component";
 import {PropertyComponent} from "./admin/admin-sidebar/property/property.component";
 import { ReviewComponent } from './admin/admin-sidebar/review/review.component';
+import { LocationComponent } from './admin/admin-sidebar/location/location.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,7 @@ export const routes: Routes = [
         component: AttributeCategoryDashboardComponent,
       },
       { path: 'country', component: CountryComponent },
+      {path:'location',component:LocationComponent},
       { path: 'category', component: CategoryDashboardComponent },
       { path: 'place-type', component: PlaceTypeDashboardComponent },
       { path: 'property-type', component: PropertyTypeComponent },
