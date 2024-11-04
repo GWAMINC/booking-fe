@@ -11,8 +11,10 @@ import { RegionComponent } from './admin/admin-sidebar/region/region.component';
 import { CategoryDashboardComponent } from './admin/admin-sidebar/category-dashboard/category-dashboard.component';
 import { PlaceTypeDashboardComponent } from './admin/admin-sidebar/place-type-dashboard/place-type-dashboard.component';
 import { PropertyTypeComponent } from "./admin/admin-sidebar/property-type/property-type.component";
-import {PropertyComponent} from "./admin/admin-sidebar/property/property.component";
+import { PropertyComponent } from "./admin/admin-sidebar/property/property.component";
 import { ReviewComponent } from './admin/admin-sidebar/review/review.component';
+import { BookingDashboardComponent } from './admin/admin-sidebar/booking-dashboard/booking-dashboard.component'; 
+
 
 export const routes: Routes = [
   {
@@ -38,8 +40,9 @@ export const routes: Routes = [
       { path: 'category', component: CategoryDashboardComponent },
       { path: 'place-type', component: PlaceTypeDashboardComponent },
       { path: 'property-type', component: PropertyTypeComponent },
-      {path: 'property', component: PropertyComponent},
-      {path: 'review', component: ReviewComponent}
+      { path: 'property', component: PropertyComponent },
+      { path: 'review', component: ReviewComponent },
+      { path: 'bookings', component: BookingDashboardComponent } 
       // Các route khác của admin
     ],
   },
