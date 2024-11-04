@@ -16,10 +16,6 @@ import {NgFor, NgIf} from "@angular/common";
 export class PropertyTypeComponent implements OnInit,OnDestroy{
   propertyTypes: PropertyTypeDto[] = [];
 
-  propertyType: PropertyTypeDto={
-    id:0,
-    typeName:'',
-  };
 
 
 
@@ -28,9 +24,8 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
   constructor(private propertyTypeService: PropertyTypeService) {}
 
   ngOnInit() {
-    this.propertyTypeService
-      .getPropertyTypes()
-      .subscribe((propertyTypes)=>(this.propertyTypes = propertyTypes));
+
+      this.getPropertyTypes()
 
   }
 
@@ -38,7 +33,7 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
     this.subscription.add(
       this.propertyTypeService.getPropertyTypes().subscribe({
         next: (response) => {
-          this.propertyTypes = response.map((propertyType:PropertyTypeDto)=>({
+          this.propertyTypes = response.map((propertyType:any)=>({
             ...propertyType,
             isEditing: false,
             isUpdating: false
@@ -50,71 +45,80 @@ export class PropertyTypeComponent implements OnInit,OnDestroy{
       })
     );
   }
+  addPropertyType() {
+    this.propertyTypes.push({ id: 0, typeName: '', isEditing: true, isUpdating: false });
+  }
 
-  addPropertyType(): void {
-    if (this.propertyType.typeName.trim().length===0){
+  createPropertyType(index: number): void {
+    if (this.propertyTypes[index].typeName.trim().length===0){
       alert("Please enter a type name");
+      return;
     }
-    else {
-      this.propertyTypeService
-        .createPropertyTypes(this.propertyType)
-        .subscribe((newPropertyType) => {
-          this.propertyTypes = newPropertyType;
-        });
-      alert("Create property type successfully!");
-    }
-    this.propertyType.typeName='';
+    this.subscription.add(
+      this.propertyTypeService.createPropertyType(this.propertyTypes[index]).subscribe({
+        next: (response) => {
+          this.propertyTypes[index] = response;
+          this.propertyTypes[index].isEditing = false;
+          alert('Create type successfully');
+        },
+        error: (error) => {
+          console.error('Error creating type', error);
+          alert('Error creating type');
+        }
+      })
+    );
+
   }
 
-  updatePropertyType(id: number) {
-    const propertyType = this.propertyTypes.find((pt) => pt.id === id);
-    if (propertyType) {
-      propertyType.isEditing = true;
-      propertyType.isUpdating = true;
-    }
-    console.log(propertyType?.typeName, propertyType?.id);
-  }
 
-  cancelupdPropertyType(id: number) {
-    const propertyType = this.propertyTypes.find((pt) => pt.id === id);
+
+
+  cancelupdPropertyType(index: number) {
+    const propertyType = this.propertyTypes.find((pt) => pt.id === index);
     if (propertyType) {
       propertyType.isEditing = false;
       propertyType.isUpdating = false;
     }
   }
 
-  savePropertyType(id: number) {
-    const propertyType = this.propertyTypes.find(pt => pt.id === id);
-    if (propertyType) {
-      if (propertyType.typeName.trim() === '') {
-        alert('Type name is required');
-        return;
-      }
-      this.subscription.add(
-        this.propertyTypeService.updatePropertyTypes(propertyType.id, propertyType).subscribe({
-          next: (response) => {
-            propertyType.isEditing = false;
-            propertyType.isUpdating = false;
-          },
-          error: (error) => {
-            console.error('Error updating property type', error);
-          }
-        })
-      );
-    }
+  updatePropertyType(index: number) {
+    this.propertyTypes[index].isEditing = true;
+    this.propertyTypes[index].isUpdating = true;
   }
 
-  deletePropertyType(id: number): void {
-    this.propertyTypeService.deletePropertyTypes(id).subscribe((res)=>{
-      let comfirmDelete: boolean = confirm("Are you sure you want to delete?");
+  savepropertyType(index: number) {
+    if (this.propertyTypes[index].typeName.trim() === '') {
+      alert('Type name can not be empty');
+      return;
+    }
+    this.subscription.add(
+      this.propertyTypeService.updatePropertyType(this.propertyTypes[index].id, this.propertyTypes[index]).subscribe({
+        next: (response) => {
+          this.propertyTypes[index].isEditing = false;
+          this.propertyTypes[index].isUpdating = false;
+          alert("Edit type success!");
+        },
+        error: (error) => {
+          console.error('Error updating type', error);
+          alert(error.message)
+        }
+      })
+    );
+  }
 
-      if (comfirmDelete) {
-        this.propertyTypes=this.propertyTypes.filter(
-          (propertyType)=> propertyType.id === id
-        );
-        alert("Delete property type successfully!");
-      }
-    })
+  deletePropertyType(index: number) {
+    this.subscription.add(
+      this.propertyTypeService.deletePropertyType(this.propertyTypes[index].id).subscribe({
+        next: () => {
+          this.propertyTypes.splice(index, 1);
+          alert('Xóa quốc gia thành công');
+        },
+        error: (error) => {
+          console.error('Error deleting country', error);
+          alert(error.message)
+        }
+      })
+    );
   }
 
 
