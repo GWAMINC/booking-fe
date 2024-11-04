@@ -9,21 +9,21 @@ export class PropertyTypeService {
 
   constructor(private http: HttpClient) {}
 
-  getPropertyTypes(): Observable<PropertyTypeDto[]> {
-    return this.http.get<PropertyTypeDto[]>(`${this.apiUrl}/getAll`);
+  getPropertyTypes(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getAll`);
   }
 
-  createPropertyTypes(propertyType: any): Observable<PropertyTypeDto[]> {
-    return this.http.post<PropertyTypeDto[]>(`${this.apiUrl}/create`,propertyType);
+  createPropertyType(propertyType: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create`,propertyType);
   }
 
-  updatePropertyTypes(id: number, propertyType: PropertyTypeDto): Observable<PropertyTypeDto> {
+  updatePropertyType(id: number, propertyType: any): Observable<any> {
     console.log(propertyType);
-    return this.http.post<PropertyTypeDto>(`${this.apiUrl}/updateById/${id}`,propertyType);
+    return this.http.post(`${this.apiUrl}/updateById/${id}`,propertyType);
   }
 
-  deletePropertyTypes(id: number): Observable<PropertyTypeDto> {
-    return this.http.delete<PropertyTypeDto>(`${this.apiUrl}/deleteById/${id}`);
+  deletePropertyType(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleteById/${id}`);
   }
 
 }
