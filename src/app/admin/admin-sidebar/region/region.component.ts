@@ -1,4 +1,3 @@
-// src/app/region/region.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RegionService } from './region.service';
