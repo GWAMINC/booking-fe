@@ -1,0 +1,139 @@
+// Cấu trúc chung
+$primary-color: #ff5a5f; // Màu chính của Airbnb (đỏ hồng)
+$secondary-color: #484848; // Màu xám tối
+$background-color: #f7f7f7; // Màu nền trang
+$white-color: #ffffff;
+$border-radius: 10px;
+
+body {
+  background-color: $background-color;
+  font-family: 'Arial', sans-serif;
+}
+
+.room-info-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $white-color;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: $border-radius;
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+}
+
+.room-header .room-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.room-header .room-price {
+  font-size: 28px;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.room-location {
+  font-size: 18px;
+  color: $secondary-color;
+  margin-top: 10px;
+}
+
+.room-description {
+  font-size: 16px;
+  color: $secondary-color;
+  margin-top: 15px;
+  line-height: 1.5;
+}
+
+.room-image {
+  width: 100%;
+  border-radius: $border-radius;
+  object-fit: cover;
+  max-height: 600px;
+}
+
+.room-image-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.room-details {
+  padding: 20px;
+}
+
+.room-details .bedroom-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.room-details .bedroom-details .bedroom {
+  flex: 1;
+  text-align: center;
+}
+
+.room-details .bedroom-details .bedroom h4 {
+  font-size: 18px;
+  font-weight: 600;
+
+}
+
+.room-details .bedroom-details .bedroom p {
+  font-size: 14px;
+  color: $secondary-color;
+}
+
+.room-booking {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.room-booking .booking-btn {
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.show-more-container {
+  text-align: center;
+  margin-top: 40px;
+}
+.book-now{
+  background-color: #FF385C;
+  color: white;
+  border-color: transparent;
+  border-radius: 8px;
+  width:200px;
+  height:50px;
+  font-size: 20px;
+}
+.show-more-container .show-more-button {
+  background-color: #f0f0f0;
+  padding: 15px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
