@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryDto } from '../../../model/category.model';
-import { CategoryService } from './category.service';
+import { CategoryService } from '../../../shared/service/category.service';
 import { CategoryRowComponent } from './category-row/category-row.component';
 
 @Component({
