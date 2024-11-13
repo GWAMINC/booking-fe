@@ -1,321 +1,85 @@
-import {Component, effect, EventEmitter, inject, input, Output, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {CategoryService} from "../../layout/navbar/category/category.service";
+import {
+  Component, OnInit, OnDestroy
+} from '@angular/core';
 import {CurrencyPipe, DatePipe, NgFor, NgIf} from "@angular/common";
-import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import { RoomItem } from './room-item.model'; 
-import { CommonModule } from '@angular/common';
+import {RoomItem} from './room-item.model';
+import {PropertyService} from "../../admin/admin-sidebar/property/property.service";
+import {Subscription} from "rxjs";
+import {PropertyDto} from "../../model/property.model";
+import {LocationService} from "../../admin/admin-sidebar/location/location.service";
+import {LocationDTO} from "../../model/location.model";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-room-item',
   standalone: true,
-  imports: [NgFor, DatePipe, CurrencyPipe, NgIf],
+  imports: [NgFor, DatePipe, CurrencyPipe, NgIf, RouterLink],
   templateUrl: './room-item.component.html',
-  styleUrl: './room-item.component.scss'
+  styleUrls: ['./room-item.component.scss']
 })
-export class RoomItemComponent {
-    items: RoomItem[] = [
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Cozy Studio',
-            location: 'New York',
-            price: 75,
-            description: 'A cozy studio with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Luxury Suite',
-            location: 'Paris',
-            price: 150,
-            description: 'A luxurious suite with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        },
-        {
-            title: 'Family Room',
-            location: 'London',
-            price: 100,
-            description: 'A family room with a view of the city',
-            image: 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720',
-            date: new Date()
-        }
-    ]
+export class RoomItemComponent implements OnInit, OnDestroy {
 
-    displayItems: RoomItem[] = [];
+  private subscription: Subscription = new Subscription();
+  properties: PropertyDto[] = [];
+  locations: LocationDTO[] = [];
+  items: RoomItem[] = [];
+  displayItems: RoomItem[] = [];
 
-    itemsPerLoad = 20;
+  constructor(private propertyService: PropertyService,
+              private locationService: LocationService) {}
 
-    ngOnInit() {
-        this.loadMoreItems();
-    }
+  ngOnInit(): void {
+    this.loadProperties();
+  }
 
-    loadMoreItems() {
-        const currentLength = this.displayItems.length;
-        const newItems = this.items.slice(currentLength, currentLength + this.itemsPerLoad);
-        this.displayItems.push(...newItems);
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  // Hàm load dữ liệu từ BE và chuyển đổi sang RoomItem
+  loadProperties(): void {
+    this.subscription.add(
+      this.propertyService.getProperties().subscribe((properties: PropertyDto[]) => {
+        this.properties = properties;
+        this.mapPropertiesToRoomItems();
+      })
+    );
+  }
+
+  // Hàm map từ PropertyDto sang RoomItem
+  private mapPropertiesToRoomItems(): void {
+    this.items = this.properties.map((property: PropertyDto) => {
+      let image: string='';
+
+      // Dựa vào trạng thái phòng để gán hình ảnh
+      if (property.id <= 4) {
+        image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThfuyUYgiaW_yU_bcxS_CfB49dwSLPCvtEMoIQ8NSlpKBUxzRUxenuhMXT7FwVGgItE28&usqp=CAU';
+      } else if (property.id>3&&property.id <= 8) {
+        image = 'https://vcnet.vn/upload/20893/20191107/11e5cc90835af1ba2cdda015172e6896.jpg';
+      } else if (property.id>8&&property.id <= 12) {
+        image = 'https://a0.muscache.com/im/pictures/miso/Hosting-53519419/original/ad0a54d5-65ac-4cc3-b202-07cc99d2f081.jpeg?im_w=720';
+      }
+
+      return {
+        id: property.id,
+        title: property.propertyName,
+        location: property.location ? property.location.name : 'Unknown Location',
+        price: property.nightlyPrice,
+        description: property.description,
+        image: image,
+        date: new Date()
+      };
+    });
+
+    console.log("items ", this.items);
+    this.displayItems = this.items.slice(0, 12);
+  }
+
+
+  // Hàm để tải thêm sản phẩm
+  loadMoreItems(): void {
+    const currentLength = this.displayItems.length;
+    const nextItems = this.items.slice(currentLength, currentLength + 3);
+    this.displayItems = [...this.displayItems, ...nextItems];
+  }
 }

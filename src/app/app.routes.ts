@@ -13,8 +13,9 @@ import { PlaceTypeDashboardComponent } from './admin/admin-sidebar/place-type-da
 import { PropertyTypeComponent } from "./admin/admin-sidebar/property-type/property-type.component";
 import { PropertyComponent } from "./admin/admin-sidebar/property/property.component";
 import { ReviewComponent } from './admin/admin-sidebar/review/review.component';
-import { BookingDashboardComponent } from './admin/admin-sidebar/booking-dashboard/booking-dashboard.component'; 
+import { BookingDashboardComponent } from './admin/admin-sidebar/booking-dashboard/booking-dashboard.component';
 import { LocationComponent } from './admin/admin-sidebar/location/location.component';
+import {RoomInfoComponent} from "./shared/room-info/room-info.component";
 
 
 export const routes: Routes = [
@@ -25,6 +26,11 @@ export const routes: Routes = [
       { path: '', component: HomeComponent },
       // Các route khác của user
     ],
+  },
+  {
+    path:'room-info/:id',
+    component: RoomInfoComponent,
+
   },
   {
     path: 'admin',
@@ -44,7 +50,7 @@ export const routes: Routes = [
       { path: 'property-type', component: PropertyTypeComponent },
       { path: 'property', component: PropertyComponent },
       { path: 'review', component: ReviewComponent },
-      { path: 'bookings', component: BookingDashboardComponent } 
+      { path: 'bookings', component: BookingDashboardComponent },
       // Các route khác của admin
     ],
   },
