@@ -16,6 +16,10 @@ export class CountryService {
     return this.http.get(`${this.apiUrl}/getAll`);
   }
 
+  getCountriesByRegionId(regionId: number): Observable<CountryDto[]> {
+    return this.http.get<CountryDto[]>(`${this.apiUrl}/getByRegionId/${regionId}`);
+  }
+
   createCountry(country: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create`, country);
   }

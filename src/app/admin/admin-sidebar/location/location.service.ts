@@ -14,6 +14,10 @@ export class LocationService {
     return this.http.get(`${this.apiUrl}/getAll`);
   }
 
+  getLocationsByCountryId(countryId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getByCountryId/${countryId}`);
+  }
+
   createLocation(location:any):Observable<any>{
     return this.http.post(`${this.apiUrl}/create`,location);
   }
