@@ -18,6 +18,7 @@ import { RoomItemComponent } from './shared/room-item/room-item.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent implements OnInit{
   faIconLibrary = inject(FaIconLibrary);
   isListingView= true;

@@ -1,0 +1,38 @@
+<script src="../room-item/room-item.model.ts"></script>
+<div class="room-info-container" *ngIf="property; else loading">
+  <!-- Thông tin chi tiết của bất động sản -->
+  <div class="room-header">
+    <h2>{{ property.propertyName }}</h2>
+    <p class="room-location">{{ property.location ? property.location.name : 'Unknown Location' }}</p>
+    <p class="room-price">${{ property.nightlyPrice }} / Night</p>
+  </div>
+
+  <img src="https://c.tenor.com/_1tDr_uE8OQAAAAd/tenor.gif" alt="Gif Animation">
+
+
+
+
+  <div class="room-description">
+    <p>{{ property.description }}</p>
+  </div>
+
+  <div class="room-details">
+    <h3>Details:</h3>
+    <p><strong>Location:</strong> {{ property.location ? property.location.name : 'Unknown Location' }}</p>
+    <p><strong>Price:</strong> ${{ property.nightlyPrice   }} / Night</p>
+    <p><strong>Available for:</strong> {{ property.numGuests }} Guests</p>
+    <p><strong>Rooms:</strong> {{ property.numBedrooms }} Bedrooms</p>
+  </div>
+
+
+  <button class="book-now">Book Now</button>
+
+</div>
+
+<!-- Nếu đang tải dữ liệu hoặc không có dữ liệu -->
+<ng-template #loading>
+  <p>Loading property details...</p>
+</ng-template>
+
+<!-- Styles can be defined in your room-info.component.scss -->
+

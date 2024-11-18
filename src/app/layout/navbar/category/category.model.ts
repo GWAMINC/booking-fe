@@ -7,6 +7,6 @@ export type CategoryName = "ALL" | "AMAZING_VIEWS" | "OMG" | "TREEHOUSE" | "BEAC
 export interface Category {
   icon: IconName;
   displayName: string;
-  technicalName: CategoryName;
+  technicalName: string;
   activated: boolean;
 }

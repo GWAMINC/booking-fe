@@ -211,7 +211,8 @@ export class PropertyComponent implements OnDestroy, OnInit {
 
   deleteProperty(index: number) {
     this.subscription.add(
-      this.propertyService.deleteProperty(this.properties[index].id).subscribe({
+      this.propertyService.deleteProperty(this.properties[index].id)
+        .subscribe({
         next: () => {
           this.properties.splice(index, 1);
         },
