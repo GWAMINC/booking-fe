@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {ButtonModule} from "primeng/button";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ToolbarModule} from "primeng/toolbar";
@@ -8,6 +8,8 @@ import {AvatarComponent} from "./avatar/avatar.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {MenuItem} from "primeng/api";
 import {ToastService} from "../toast.service";
+import {AnywhereComponent} from "./anywhere/anywhere.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +20,9 @@ import {ToastService} from "../toast.service";
     ToolbarModule,
     MenuModule,
     CategoryComponent,
-    AvatarComponent
+    AvatarComponent,
+    AnywhereComponent,
+    NgIf,
   ],
   providers: [DialogService],
   templateUrl: './navbar.component.html',
@@ -36,6 +40,20 @@ export class NavbarComponent implements OnInit{
   //logout () => this.authService.logout();
 
   currentMenuItems: MenuItem[] | undefined = [];
+  showAnywhereModal: boolean = false;
+
+  toggleAnywhereModal() {
+    this.showAnywhereModal = !this.showAnywhereModal;
+  }
+
+  onClickOutside(event: Event) {
+    if ((event.target as HTMLElement).classList.contains('modal')) {
+      this.showAnywhereModal = false;
+    }
+  }
+  onModalClick(event: Event) {
+    event.stopPropagation();
+  }
 
   ngOnInit() {
     this.fetchMenu();

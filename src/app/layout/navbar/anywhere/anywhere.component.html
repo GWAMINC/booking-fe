@@ -1,0 +1,22 @@
+<div>
+  <input type="text" placeholder="Search locations" [(ngModel)]="searchTerm" />
+</div>
+
+<div class="location-container" *ngIf="filteredLocations().length > 0">
+  <div *ngFor="let location of filteredLocations()" class="location-item">
+    <div class="location-name">
+      <h2>{{ location.name }}</h2>
+    </div>
+  </div>
+</div>
+
+<div class="region-container" *ngIf="filteredLocations().length === 0">
+  <div *ngFor="let region of topRegions()" class="region-item">
+    <div class="region-image">
+      <img [src]="region.image" alt="{{ region.name }}" />
+    </div>
+    <div class="region-name">
+      <h2>{{ region.name }}</h2>
+    </div>
+  </div>
+</div>

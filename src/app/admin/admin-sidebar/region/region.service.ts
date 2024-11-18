@@ -16,6 +16,10 @@ export class RegionService {
     return this.http.get<RegionDto[]>(`${this.apiUrl}/getAll`);
   }
 
+  getRegionById(id: number): Observable<RegionDto> {
+    return this.http.get<RegionDto>(`${this.apiUrl}/getById/${id}`);
+  }
+
   createRegion(region: RegionDto): Observable<RegionDto> {
     return this.http.post<RegionDto>(`${this.apiUrl}/create`, region);
   }
