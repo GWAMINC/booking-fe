@@ -1,3 +1,4 @@
+import { AnywhereComponent } from './layout/navbar/anywhere/anywhere.component';
 import { CountryComponent } from './admin/admin-sidebar/country/country.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -24,6 +25,8 @@ export const routes: Routes = [
     component: UserLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      {path:'anywhere',component: AnywhereComponent}
+
       // Các route khác của user
     ],
   },
@@ -50,7 +53,9 @@ export const routes: Routes = [
       { path: 'property-type', component: PropertyTypeComponent },
       { path: 'property', component: PropertyComponent },
       { path: 'review', component: ReviewComponent },
+
       { path: 'bookings', component: BookingDashboardComponent },
+
       // Các route khác của admin
     ],
   },
