@@ -7,6 +7,7 @@ import { UserDto } from "../../../model/user.model";
 import { Subscription } from "rxjs";
 import { ReviewService } from "./review.service";
 import { PropertyService } from "../property/property.service";  // Import PropertyService
+import { ReviewCreate } from "../../../model/review/create.model";
 // import { UserService } from "../user/user.service";  // Nếu có UserService
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,17 +40,31 @@ export class ReviewComponent implements OnInit, OnDestroy {
     }
 
     addReview() {
+        if (this.properties.length === 0) {
+            alert("Error: No properties available to assign.");
+            return;
+        }
+        
+        const reviewDateString = new Date().toISOString().split('T')[0];
+        const reviewDate = new Date(reviewDateString);
+
         this.reviews.push({
-            id: 0,
+            id: 0, // Mặc định là 0 hoặc undefined cho review chưa được lưu
             comment: '',
             overallRating: 0,
-            reviewDate: new Date(),
+            reviewDate: reviewDate,
             isEditing: true,
             isUpdating: false,
-            property: this.properties[0],  // Chọn property đầu tiên trong danh sách
-            user: this.users[0]  // Chọn user đầu tiên trong danh sách
+            property: this.properties[0], // Gán property đầu tiên mặc định
+            user: {
+                id: 6,
+                firstName: 'Default',
+                lastName: 'User',
+                emailAddress: 'default.user@example.com'
+            } as UserDto
         });
     }
+    
 
     getReviews() {
         this.subscription.add(
@@ -70,7 +85,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
             this.propertyService.getProperties().subscribe({
                 next: (response) => {
                     this.properties = response;
-                    console.log(this.properties)
+                    console.log("property:", this.properties)
                 },
                 error: (error) => {
                     console.log("Error fetching properties", error);
@@ -94,16 +109,26 @@ export class ReviewComponent implements OnInit, OnDestroy {
     // }
 
     createReview(index: number) {
-        if (!this.reviews[index].overallRating) {
+        const review = this.reviews[index];
+        if (!review.overallRating) {
             alert("Error: Rating cannot be empty or zero.");
             return;
         }
+
+        // Tạo payload theo ReviewCreate
+        const reviewCreate: ReviewCreate = {
+            overallRating: review.overallRating,
+            comment: review.comment,
+            reviewDate: review.reviewDate,
+            propertyId: review.property.id, // Lấy propertyId từ property
+            userId: 6 // Gán userId mặc định
+        };
     
         this.subscription.add(
-            this.reviewService.createReviews(this.reviews[index]).subscribe({
+            this.reviewService.createReviews(reviewCreate).subscribe({
                 next: (response) => {
-                    // Cập nhật danh sách đánh giá trực tiếp mà không cần tải lại
-                    this.reviews[index] = response;
+                    // Cập nhật review mới từ response
+                    this.reviews[index] = { ...response, isEditing: false, isUpdating: false };
                     alert("Review created successfully!");
                 },
                 error: (error) => {
@@ -112,6 +137,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
             })
         );
     }
+    
 
     updateReview(index: number) {
         if (!this.reviews[index] || !this.reviews[index].id) {
@@ -143,7 +169,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
             this.reviewService.deleteReviews(this.reviews[index].id).subscribe({
                 next: () => {
                     // Xóa đánh giá khỏi danh sách mà không cần tải lại
-                    this.reviews.splice(index, 1);
+                    this.reviews = this.reviews.filter(review => review.id !== this.reviews[index].id);
                     alert("Review deleted successfully!");
                 },
                 error: (error) => {
@@ -152,6 +178,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
             })
         );
     }
+    
+
 
     saveReview(index: number) {
         if (!this.reviews[index].overallRating) {

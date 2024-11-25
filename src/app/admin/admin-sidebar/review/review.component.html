@@ -7,7 +7,6 @@
       <th>Review Date</th>
       <th>Rating</th>
       <th>Property</th>
-      <th>User</th>
       <th class="action-column">Action</th>
     </tr>
   </thead>
@@ -25,11 +24,6 @@
       <td>
         <select [(ngModel)]="review.property.id">
           <option *ngFor="let property of properties" [value]="property.id">{{ property.propertyName }}</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="review.user.id">
-          <option *ngFor="let user of users" [value]="user.id"></option>
         </select>
       </td>
       <td class="action-column">
