@@ -1,0 +1,75 @@
+<div class="container">
+    <h2>Quản lý trạng thái booking</h2>
+  
+    <div class="card my-3">
+      <div class="card-header">
+        <h4>Thêm trạng thái mới</h4>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="createBookingStatus()">
+          <div class="form-group">
+            <label for="name">Tên trạng thái</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              [(ngModel)]="newBookingStatus.name"
+              name="name"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">Thêm trạng thái</button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="card my-3">
+      <div class="card-header">
+        <h4>Danh sách trạng thái booking</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li *ngFor="let status of bookingStatuses" class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ status.name }}</span>
+            
+            <button
+              class="btn btn-warning btn-sm"
+              (click)="selectBookingStatus(status)"
+            >
+              Sửa
+            </button>
+            
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteBookingStatus(status.id)"
+            >
+              Xóa
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedBookingStatus" class="card my-3">
+      <div class="card-header">
+        <h4>Chỉnh sửa trạng thái</h4>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="createBookingStatus()">
+            <div class="form-group">
+              <label for="name">Tên trạng thái</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                [(ngModel)]="newBookingStatus.name"
+                name="name"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-submit mt-2">Thêm trạng thái</button>
+          </form>
+      </div>
+    </div>
+  </div>
+  

@@ -23,43 +23,47 @@ export class PlaceTypeDashboardComponent {
   constructor(private placeTypeService: PlaceTypeService) {}
 
   ngOnInit(): void {
-    this.placeTypeService
-      .getPlaceTypes()
-      .subscribe((placeTypes) => (this.placeTypes = placeTypes));
+    this.placeTypeService.getPlaceTypes().subscribe({
+      next: (placeTypes) => (this.placeTypes = placeTypes),
+      error: (e) => console.log('Get place types failed: ', e),
+    });
   }
 
   addPlaceType() {
     if (this.placeType.typeName.trim().length === 0)
       alert('Please enter type name!');
     else {
-      this.placeTypeService
-        .createPlaceType(this.placeType)
-        .subscribe((newPlaceType) => {
+      this.placeTypeService.createPlaceType(this.placeType).subscribe({
+        next: (newPlaceType) => {
           this.placeTypes = [...this.placeTypes, newPlaceType];
-        });
+          this.placeType.typeName = '';
+        },
+        error: (e) => console.log('Create place type failed: ', e),
+      });
     }
-
-    this.placeType.typeName = '';
   }
 
   deletePlaceType(id: number) {
-    this.placeTypeService
-      .deletePlaceType(id)
-      .subscribe((res) => console.log(res));
-
-    this.placeTypes = this.placeTypes.filter(
-      (placeType) => placeType.id !== id
-    );
+    this.placeTypeService.deletePlaceType(id).subscribe({
+      next: () =>
+        (this.placeTypes = this.placeTypes.filter(
+          (placeType) => placeType.id !== id
+        )),
+      error: (e) => {
+        console.log('Delete place type failed:', e);
+        alert(e.error.message);
+      },
+    });
   }
 
   updatePlaceType(newPlaceType: PlaceTypeDto) {
-    this.placeTypeService
-      .updatePlaceType(newPlaceType)
-      .subscribe((res) => console.log(res));
-
-    this.placeTypes = this.placeTypes.map((placeType) => {
-      if (placeType.id === newPlaceType.id) return newPlaceType;
-      return placeType;
+    this.placeTypeService.updatePlaceType(newPlaceType).subscribe({
+      next: () =>
+        (this.placeTypes = this.placeTypes.map((placeType) => {
+          if (placeType.id === newPlaceType.id) return newPlaceType;
+          return placeType;
+        })),
+      error: (e) => console.log('Update place type failed: ', e),
     });
   }
 }

@@ -1,0 +1,206 @@
+// Import Google Font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+// Variables
+$primary-color: #2196F3;
+$danger-color: #dc3545; 
+$warning-color: #ffc107;
+$border-radius: 8px;
+$box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+$transition: all 0.3s ease;
+
+// Font settings
+$font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$font-size-base: 14px;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+* {
+  font-family: $font-family-base;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: $font-weight-bold;
+    font-size: 24px;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: $primary-color;
+    }
+  }
+}
+
+.card {
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  transition: $transition;
+  
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  .card-header {
+    background: white;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 15px 20px;
+
+    h4 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: $font-weight-medium;
+      color: #2c3e50;
+    }
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    color: #546e7a;
+    font-weight: $font-weight-medium;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .form-control {
+    border-radius: $border-radius;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    font-size: $font-size-base;
+    transition: $transition;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+    }
+  }
+}
+
+.btn {
+  padding: 8px 20px;
+  border-radius: $border-radius;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+  transition: $transition;
+  letter-spacing: 0.3px;
+
+  &.btn-primary {
+    background: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      background: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+
+  &.btn-warning {
+    background: $warning-color;
+    border-color: $warning-color;
+    color: #000;
+
+    &:hover {
+      background: darken($warning-color, 10%);
+      border-color: darken($warning-color, 10%);
+    }
+  }
+
+  &.btn-danger {
+    background: $danger-color;
+    border-color: $danger-color;
+
+    &:hover {
+      background: darken($danger-color, 10%);
+      border-color: darken($danger-color, 10%);
+    }
+  }
+
+  &.btn-submit {
+    background: $primary-color;
+    border-color: $primary-color;
+    color: white;
+
+    &:hover {
+      background: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+.list-group {
+  .list-group-item {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 15px;
+    transition: $transition;
+    font-size: $font-size-base;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: rgba($primary-color, 0.05);
+    }
+
+    .btn {
+      margin-left: 10px;
+      font-size: 13px;
+    }
+
+    span {
+      font-weight: $font-weight-medium;
+      color: #2c3e50;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    margin: 10px 0;
+  }
+
+  .list-group-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    .btn {
+      margin: 5px 0;
+      width: 100%;
+    }
+  }
+}

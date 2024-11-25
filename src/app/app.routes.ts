@@ -1,3 +1,4 @@
+import { AnywhereComponent } from './layout/navbar/anywhere/anywhere.component';
 import { CountryComponent } from './admin/admin-sidebar/country/country.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,8 +12,14 @@ import { RegionComponent } from './admin/admin-sidebar/region/region.component';
 import { CategoryDashboardComponent } from './admin/admin-sidebar/category-dashboard/category-dashboard.component';
 import { PlaceTypeDashboardComponent } from './admin/admin-sidebar/place-type-dashboard/place-type-dashboard.component';
 import { PropertyTypeComponent } from "./admin/admin-sidebar/property-type/property-type.component";
-import {PropertyComponent} from "./admin/admin-sidebar/property/property.component";
+import { PropertyComponent } from "./admin/admin-sidebar/property/property.component";
 import { ReviewComponent } from './admin/admin-sidebar/review/review.component';
+import { BookingDashboardComponent } from './admin/admin-sidebar/booking-dashboard/booking-dashboard.component';
+import { LocationComponent } from './admin/admin-sidebar/location/location.component';
+import { BookingGuestsDashboardComponent } from './admin/admin-sidebar/booking-guests-dashboard/booking-guests-dashboard.component';
+import { BookingStatusComponent } from './admin/admin-sidebar/booking-status/booking-status.component'; 
+import {RoomInfoComponent} from "./shared/room-info/room-info.component";
+
 
 export const routes: Routes = [
   {
@@ -20,8 +27,13 @@ export const routes: Routes = [
     component: UserLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      {path:'anywhere',component: AnywhereComponent}
       // Các route khác của user
     ],
+  },
+  {
+    path:'room-info/:id',
+    component: RoomInfoComponent,
   },
   {
     path: 'admin',
@@ -30,16 +42,17 @@ export const routes: Routes = [
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'region', component: RegionComponent },
       { path: 'attribute', component: AttributeDashboardComponent },
-      {
-        path: 'attribute-category',
-        component: AttributeCategoryDashboardComponent,
-      },
+      { path: 'attribute-category', component: AttributeCategoryDashboardComponent },
       { path: 'country', component: CountryComponent },
+      { path: 'location', component: LocationComponent },
       { path: 'category', component: CategoryDashboardComponent },
       { path: 'place-type', component: PlaceTypeDashboardComponent },
       { path: 'property-type', component: PropertyTypeComponent },
-      {path: 'property', component: PropertyComponent},
-      {path: 'review', component: ReviewComponent}
+      { path: 'property', component: PropertyComponent },
+      { path: 'review', component: ReviewComponent },
+      { path: 'bookings', component: BookingDashboardComponent },
+      { path: 'booking-guests', component: BookingGuestsDashboardComponent },
+      { path: 'booking-statuses', component: BookingStatusComponent },
       // Các route khác của admin
     ],
   },

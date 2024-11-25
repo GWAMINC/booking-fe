@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="mt-4 mb-4">Booking Guests Dashboard</h2>
+  <button class="btn btn-primary mb-3" (click)="addBookingGuest()">Add Booking Guest</button>
+  <div *ngFor="let guest of bookingGuests; let i = index" class="card mb-3">
+    <div class="card-body">
+      <div *ngIf="guest.isEditing">
+        <div class="form-group">
+          <label for="numGuests-{{i}}">Số lượng khách:</label>
+          <input
+            id="numGuests-{{i}}"
+            [(ngModel)]="guest.numGuests"
+            class="form-control"
+            placeholder="Số lượng khách"
+          />
+        </div>
+        <button class="btn btn-success mt-2" (click)="guest.id ? saveBookingGuest(i) : createBookingGuest(i)">
+          {{ guest.id ? 'Save' : 'Create' }}
+        </button>
+        <button class="btn btn-secondary mt-2 ml-2" (click)="guest.isEditing = false">
+          Cancel
+        </button>
+      </div>
+      <div *ngIf="!guest.isEditing">
+        <p><strong>Số lượng khách:</strong> {{ guest.numGuests }}</p>
+        <button class="btn btn-warning" (click)="updateBookingGuest(i)">Edit</button>
+        <button class="btn btn-danger ml-2" (click)="deleteBookingGuest(i)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

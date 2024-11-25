@@ -1,4 +1,3 @@
-// src/app/region/region.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RegionService } from './region.service';
@@ -50,9 +49,11 @@ export class RegionComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.regions[index] = response;
           this.regions[index].isEditing = false;
+          alert("Tạo thành công!")
         },
         error: (error) => {
           console.error('Error creating region', error);
+          alert(error.message)
         }
       })
     );
@@ -74,9 +75,11 @@ export class RegionComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.regions[index].isEditing = false;
           this.regions[index].isUpdating = false;
+          alert("Sửa thành công!")
         },
         error: (error) => {
           console.error('Error updating region', error);
+          alert(error.message)
         }
       })
     );
@@ -87,9 +90,11 @@ export class RegionComponent implements OnInit, OnDestroy {
       this.regionService.deleteRegion(this.regions[index].id).subscribe({
         next: () => {
           this.regions.splice(index, 1);
+          alert("Xóa thành công!")
         },
         error: (error) => {
           console.error('Error deleting region', error);
+          alert(error.message)
         }
       })
     );

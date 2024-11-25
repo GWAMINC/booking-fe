@@ -42,9 +42,7 @@ export class PropertyComponent implements OnDestroy, OnInit {
       this.placeTypeService.getPlaceTypes().subscribe({
         next: (response) => {
           this.placeTypes=response.map((PlaceType:PlaceTypeDto)=>({
-            ...PlaceType,
-            isEditing:false,
-            isUpdating:false
+            ...PlaceType
           }));
         },
         error: (error)=>{
@@ -176,6 +174,7 @@ export class PropertyComponent implements OnDestroy, OnInit {
         next: (response) => {
           this.properties[index] = response;
           this.properties[index].isEditing = false;
+          this.getProperties();
         },
         error: (error) => {
           console.error('Error creating property', error);
@@ -212,7 +211,8 @@ export class PropertyComponent implements OnDestroy, OnInit {
 
   deleteProperty(index: number) {
     this.subscription.add(
-      this.propertyService.deleteProperty(this.properties[index].id).subscribe({
+      this.propertyService.deleteProperty(this.properties[index].id)
+        .subscribe({
         next: () => {
           this.properties.splice(index, 1);
         },
