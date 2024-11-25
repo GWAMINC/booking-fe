@@ -6,8 +6,8 @@
       <th>Comment</th>
       <th>Review Date</th>
       <th>Rating</th>
-      <th>Property id</th>
-      <th>User id</th>
+      <th>Property</th>
+      <th>User</th>
       <th class="action-column">Action</th>
     </tr>
   </thead>
@@ -17,21 +17,25 @@
         <input [(ngModel)]="review.comment" placeholder="Enter your comment">
       </td>
       <td>
-        <input [(ngModel)]="review.reviewDate" type="date"> <!-- Assuming reviewDate is a date -->
+        <input [(ngModel)]="review.reviewDate" type="date">
       </td>
       <td>
         <input type="number" [(ngModel)]="review.overallRating" min="1" max="5" placeholder="Rating (1-5)">
       </td>
       <td>
-        <input [(ngModel)]="review.propertyId" type="number"> <!-- Assuming reviewDate is a date -->
+        <select [(ngModel)]="review.property.id">
+          <option *ngFor="let property of properties" [value]="property.id">{{ property.propertyName }}</option>
+        </select>
       </td>
       <td>
-        <input type="number" [(ngModel)]="review.userId">
+        <select [(ngModel)]="review.user.id">
+          <option *ngFor="let user of users" [value]="user.id"></option>
+        </select>
       </td>
       <td class="action-column">
-        <button type="button" (click)="createReview(i)">save</button>
-        <button type="button" (click)="updateReview(i)">edit</button>
-        <button type="button" (click)="deleteReview(i)">delete</button>
+        <button type="button" (click)="createReview(i)">Save</button>
+        <button type="button" (click)="updateReview(i)">Edit</button>
+        <button type="button" (click)="deleteReview(i)">Delete</button>
       </td>
     </tr>
   </tbody>
