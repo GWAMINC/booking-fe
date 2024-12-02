@@ -1,0 +1,84 @@
+.filter-container {
+  position: relative;
+  z-index: 1;
+}
+
+.filter-header {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+.filter-component {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+  color: #555;
+  border-bottom: 1px solid #ccc;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-options button {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2); /* Hiệu ứng mờ */
+  cursor: pointer;
+}
+.filter-options button:hover {
+  border: 1px solid black;
+}
+
+.filter-options button.selected {
+  background-color: #f9f9f9;
+  border: 1px solid black;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.filter-actions {
+  border-top: 2px solid #ccc;
+}
+.clear-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  font: 20px Arial, sans-serif;
+
+}
+
+.clear-button:hover {
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+.show-button {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}

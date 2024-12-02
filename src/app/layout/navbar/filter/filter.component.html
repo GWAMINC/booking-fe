@@ -1,0 +1,16 @@
+<div class="modal-filter-content">
+  <h2 class="filter-header">Filters</h2>
+  <div class="filter-component"> Attributes
+    <div class="filter-options">
+        <button *ngFor="let attribute of attributes"
+                (click)="toggleAttribute(attribute)"
+                [class.selected]="isSelected(attribute)">
+          {{ attribute.name }}
+        </button>
+    </div>
+  </div>
+  <div class="filter-actions">
+    <button class="clear-button" (click)="clearSelection()">Clear all</button>
+    <button class="show-button" (click)="showSelectedAttributes()">Show places</button>
+  </div>
+</div>

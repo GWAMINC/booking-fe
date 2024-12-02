@@ -37,7 +37,7 @@
   height: auto;
 }
 
-.modal-content {
+.modal-anywhere-content {
   background-color: #fefefe;
   margin: 10px auto;
   padding: 20px;
@@ -59,4 +59,37 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+.filter-button {
+  background-color: white;
+  color: black;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8); /* Hiệu ứng mờ */
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 16px Arial, sans-serif;
+  margin-left: 10px;
+}
+
+.filter-button:hover {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+}
+
+.filter-button img {
+  margin-right: 8px;
+}
+
+.modal-filter-content {
+  background-color: #fefefe;
+  margin: 10px auto;
+  border: 1px solid #888;
+  border-radius:10px;
+  width: 40%;
+  max-height: 60vh;
+  overflow-y: auto;
 }

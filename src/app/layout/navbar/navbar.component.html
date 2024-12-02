@@ -30,9 +30,22 @@
       </button>
     </div>
   </p-toolbar>
-  <app-category></app-category>
+  <div class="flex align-items-center">
+    <app-category></app-category>
+    <button (click)="toggleFilterModal()" class="p-button filter-button flex align-items-center justify-content-center">
+      <img src="https://icons.iconarchive.com/icons/fa-team/fontawesome/128/FontAwesome-Sliders-icon.png" width="20" height="20">
+      Filters
+    </button>
+  </div>
+
+  <div *ngIf="showFilterModal" class="modal" (click)="onClickOutside($event)">
+    <div class="modal-filter-content" (click)="onModalClick($event)">
+      <span (click)="toggleFilterModal()" class="close">&times;</span>
+      <app-filter></app-filter>
+    </div>
+  </div>
   <div *ngIf="showAnywhereModal" class="modal" (click)="onClickOutside($event)">
-    <div class="modal-content" (click)="onModalClick($event)">
+    <div class="modal-anywhere-content" (click)="onModalClick($event)">
       <span (click)="toggleAnywhereModal()" class="close">&times;</span>
       <app-anywhere></app-anywhere>
     </div>

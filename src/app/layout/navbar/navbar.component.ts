@@ -10,6 +10,12 @@ import {MenuItem} from "primeng/api";
 import {ToastService} from "../toast.service";
 import {AnywhereComponent} from "./anywhere/anywhere.component";
 import {NgIf} from "@angular/common";
+import {FilterComponent} from "./filter/filter.component";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFilter, faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faFilter, faSearch, faBars, fab);
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +28,7 @@ import {NgIf} from "@angular/common";
     CategoryComponent,
     AvatarComponent,
     AnywhereComponent,
+    FilterComponent,
     NgIf,
   ],
   providers: [DialogService],
@@ -41,14 +48,18 @@ export class NavbarComponent implements OnInit{
 
   currentMenuItems: MenuItem[] | undefined = [];
   showAnywhereModal: boolean = false;
+  showFilterModal: boolean = false;
 
   toggleAnywhereModal() {
     this.showAnywhereModal = !this.showAnywhereModal;
   }
-
+  toggleFilterModal() {
+    this.showFilterModal = !this.showFilterModal;
+  }
   onClickOutside(event: Event) {
     if ((event.target as HTMLElement).classList.contains('modal')) {
       this.showAnywhereModal = false;
+      this.showFilterModal = false;
     }
   }
   onModalClick(event: Event) {
