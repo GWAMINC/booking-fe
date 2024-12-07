@@ -1,4 +1,4 @@
-import { AnywhereComponent } from './layout/navbar/anywhere/anywhere.component';
+import { AnywhereComponent } from './layout/navbar/search-navbar/anywhere/anywhere.component';
 import { CountryComponent } from './admin/admin-sidebar/country/country.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

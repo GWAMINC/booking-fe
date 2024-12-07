@@ -1,0 +1,29 @@
+<div class="guests-container">
+  <div class="input-group">
+    <label>Người lớn<br><span class="subtext">Từ 13 tuổi trở lên</span></label>
+    <button (click)="decrement('adults')" [disabled]="adultCount === 0">-</button>
+    <input type="number" [(ngModel)]="adultCount" [min]="0" readonly />
+    <button (click)="increment('adults')">+</button>
+  </div>
+
+  <div class="input-group">
+    <label>Trẻ em<br><span class="subtext">Độ tuổi 2 – 12</span></label>
+    <button (click)="decrement('children')" [disabled]="childCount === 0">-</button>
+    <input type="number" [(ngModel)]="childCount" [min]="0" readonly />
+    <button (click)="increment('children')">+</button>
+  </div>
+
+  <div class="input-group">
+    <label>Em bé<br><span class="subtext">Dưới 2 tuổi</span></label>
+    <button (click)="decrement('infants')" [disabled]="infantCount === 0">-</button>
+    <input type="number" [(ngModel)]="infantCount" [min]="0" readonly />
+    <button (click)="increment('infants')">+</button>
+  </div>
+
+  <div class="input-group">
+    <label>Thú cưng<br><span class="subtext">Bạn sẽ mang theo động vật phục vụ?</span></label>
+    <button (click)="decrement('pets')" [disabled]="petCount === 0">-</button>
+    <input type="number" [(ngModel)]="petCount" [min]="0" readonly />
+    <button (click)="increment('pets')">+</button>
+  </div>
+</div>
