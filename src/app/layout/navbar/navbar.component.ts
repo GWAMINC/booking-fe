@@ -8,8 +8,10 @@ import {AvatarComponent} from "./avatar/avatar.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {MenuItem} from "primeng/api";
 import {ToastService} from "../toast.service";
-import {AnywhereComponent} from "./anywhere/anywhere.component";
+import {AnywhereComponent} from "./search-navbar/anywhere/anywhere.component";
 import {NgIf} from "@angular/common";
+import { DateComponent } from "./search-navbar/date/date.component";
+import { GuestsComponent } from "./search-navbar/guests/guests.component";
 
 @Component({
   selector: 'app-navbar',
@@ -23,15 +25,18 @@ import {NgIf} from "@angular/common";
     AvatarComponent,
     AnywhereComponent,
     NgIf,
-  ],
+    DateComponent,
+    GuestsComponent
+],
   providers: [DialogService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit{
-  location = "Anywhere";
-  guests = "Add guests";
-  dates = "Any week";
+  location = "Địa điểm";
+  checkindate="Nhận phòng";
+  guests = "Khách";
+  checkoutdate = "Trả phòng";
 
   toastService = inject(ToastService);
 
@@ -41,14 +46,29 @@ export class NavbarComponent implements OnInit{
 
   currentMenuItems: MenuItem[] | undefined = [];
   showAnywhereModal: boolean = false;
-
+  showDatePicker: boolean = false;
+  showGuest:boolean =false;
   toggleAnywhereModal() {
     this.showAnywhereModal = !this.showAnywhereModal;
+    this.showGuest=false;
+    this.showDatePicker=false;
   }
-
+  toggleDatePicker() {
+    this.showDatePicker = !this.showDatePicker;
+    this.showAnywhereModal=false;
+    this.showGuest=false;
+  }
+  toggleGuest(){
+    this.showGuest=!this.showGuest;
+    this.showAnywhereModal=false;
+    this.showDatePicker=false;
+  }
+  @HostListener('document:click',['$event'])
   onClickOutside(event: Event) {
     if ((event.target as HTMLElement).classList.contains('modal')) {
       this.showAnywhereModal = false;
+      this.showDatePicker=false;
+      this.showGuest=false;
     }
   }
   onModalClick(event: Event) {

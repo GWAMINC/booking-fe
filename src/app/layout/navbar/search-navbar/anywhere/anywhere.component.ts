@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
-import { CountryService } from '../../../admin/admin-sidebar/country/country.service';
-import { LocationService } from '../../../admin/admin-sidebar/location/location.service';
-import { RegionService } from './../../../admin/admin-sidebar/region/region.service';
+import { CountryService } from '../../../../admin/admin-sidebar/country/country.service';
+import { LocationService } from '../../../../admin/admin-sidebar/location/location.service';
+import { RegionService } from '../../../../admin/admin-sidebar/region/region.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 

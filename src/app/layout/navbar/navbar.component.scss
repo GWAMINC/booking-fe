@@ -23,7 +23,7 @@
 }
 
 .search {
-  width: 380px;
+  width: 480px;
 }
 .modal {
   display: flex;
@@ -59,4 +59,19 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+.datepicker {
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkin-datepicker {
+  left: 0;
+}
+
+.checkout-datepicker {
+  right: 0;
 }

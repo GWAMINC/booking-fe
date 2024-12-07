@@ -1,0 +1,45 @@
+.date-pickers {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;  // Khoảng cách giữa hai trường chọn ngày
+  flex-wrap: wrap;  // Đảm bảo nếu màn hình nhỏ sẽ tự động xuống dòng
+  margin: 20px 0;
+}
+
+.date-picker-field {
+  width: 48%;  
+}
+::ng-deep .mat-datepicker-content .mat-calendar{
+    background: linear-gradient(to right, #ffffff, #f7f7f7, #e0e0e0, #d1d1d1);
+
+}
+mat-form-field {
+  width: 100%;  
+}
+
+mat-datepicker-toggle {
+  margin-right: 10px;  
+}
+
+mat-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+::ng-deep .mat-calendar-body-cell:hover {
+  background-color: #e0e0e0;
+  border-radius: 50%;  /* Màu nền khi hover vào ngày */
+}
+
+/* Tùy chỉnh icon toggle */
+.mat-datepicker-toggle {
+  color: #3f51b5;  /* Màu sắc của icon toggle */
+  font-size: 20px;  /* Kích thước icon */
+}
+/* Điều chỉnh popup của mat-datepicker */
+.mat-datepicker-popup {
+  width: 300px;  /* Đặt chiều rộng của popup */
+  min-width: 250px;  /* Đặt chiều rộng tối thiểu */
+  margin-left: -20px;  /* Điều chỉnh vị trí của calendar popup */
+}
